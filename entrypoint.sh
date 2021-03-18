@@ -49,7 +49,7 @@ find_project_id() {
   _PROJECTS=$(curl -s -X GET -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
            -H 'Accept: application/vnd.github.inertia-preview+json' \
            "$_ENDPOINT")
-
+  echo "$_PROJECTS"
   _PROJECTID=$(echo "$_PROJECTS" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id")
 
   if [ "$_PROJECTID" != "" ]; then
